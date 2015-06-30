@@ -1,0 +1,348 @@
+/**
+ * File:       metabolics.css
+ * Desc:       Custom admin styles for Metabolics
+ * Author:     Lion Associates
+ * Author URI: http://www.lionassociates.com
+ * License:    GPL2
+ */
+
+/*
+ * Structural Styles
+ * =============================================================== */
+ /* Admin Table Styles */
+.metabolics-header {
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  //border: 1px #eee solid;
+  cursor: pointer !important;
+  color: #fff;
+}
+
+.metabolics-header:after {
+  content: '';
+  display: block;
+  float: right;
+  width: 0px;
+  height: 0px;
+  margin: 7px 0;
+  border-style: solid;
+  border-width: 0 4px 6px 4px;
+  border-color: transparent transparent #ffffff transparent;
+}
+
+.metabolics-header.collapsed:after {
+  border-width: 6px 4px 0 4px;
+  border-color: #ffffff transparent transparent transparent;
+}
+
+.metabolics-table {
+  background: #fdfdfd;
+  border-bottom: 1px #eee solid;
+  border-left: 1px #eee solid;
+  border-right: 1px #eee solid;
+  margin: 0 0 10px 0!important;
+}
+
+.metabolics-table:first-child {
+  border-top: 1px #eee solid;
+  margin-top: 10px !important;
+}
+
+.metabolics-table tr {
+  border-top: 1px #eee solid;
+}
+
+.metabolics-table tr:first-child {
+  border-top: none;
+}
+
+.metabolics-table th {
+  font-weight: bold;
+  color: #222;
+  padding-left: 10px;
+}
+
+.metabolics-table .description {
+  font-size: 12px !important;
+}
+
+.metabolics-heading {
+  margin: -15px 0 -15px -10px;
+  width: 100%;
+  padding: 10px;
+  font-weight: bold;
+  background: #999;
+  color: #fff;
+}
+
+/* 3.8 Color Schemes */
+.admin-color-fresh .metabolics-header {
+  background: #0074a2;
+}
+
+.admin-color-light .metabolics-header {
+  background: #888;
+}
+
+.admin-color-blue .metabolics-header {
+  background: #52accc;
+}
+
+.admin-color-coffee .metabolics-header {
+  background: #59524c;
+}
+
+.admin-color-ectoplasm .metabolics-header {
+  background: #523f6d;
+}
+
+.admin-color-midnight .metabolics-header {
+  background: #363b3f;
+}
+
+.admin-color-ocean .metabolics-header {
+  background: #738e96;
+}
+
+.admin-color-sunrise .metabolics-header {
+  background: #cf4944;
+}
+
+
+/* Tabs */
+.metabolics-tabbed .metabolics-header {
+  margin: 0 !important;
+  float: left;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  cursor: pointer !important;
+  color: #0074a2;
+  background: #fff;
+  border: 0;
+}
+
+.metabolics-tabbed .metabolics-header:hover {
+  color: #2ea2cc;
+}
+
+
+.metabolics-tabbed .metabolics-header {
+  background: transparent;
+}
+
+.metabolics-tabbed .metabolics-header:after {
+  display: none;
+}
+
+.metabolics-tabbed .metabolics-header.active {
+  color: #222;
+  background: #fdfdfd;
+  margin-bottom: -1px !important;
+  padding-bottom: 8px !important;
+  border: 1px #eee solid;
+  border-bottom-color: #fdfdfd;
+}
+
+.metabolics-tabbed .metabolics-table {
+  border-top: 1px #eee solid;
+  display: none;
+}
+
+.metabolics-tabbed .metabolics-table.active {
+  display: table;
+}
+
+.metabolics-tabs {
+  margin: 10px 0 0 0;
+}
+
+.metabolics-tabs li {
+  float: left;
+  margin-right: 5px;
+  margin-bottom: 0;
+}
+
+/*
+ * Field Styles
+ * =============================================================== */
+
+/* Code Fields */
+.metabolics-code {
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+
+/* "Grouped" fields (checkgroup, radio, etc.) */
+.metabolics-group {
+  border: 1px #dfdfdf solid;
+  background: #fff;
+  float: left;
+  min-width: 200px;
+  max-height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.metabolics-group label {
+  border-top: 1px #dfdfdf solid;
+  display: block;
+  padding: 5px 10px;
+}
+
+.metabolics-group label:first-child {
+  border-top: none;
+}
+
+.metabolics-group + p.description {
+  clear: both;
+  padding-top: 10px;
+}
+
+
+/* Message Fields */
+.metabolics-message {
+  font-size: 12px !important;
+  color: #888;
+  padding: 6px 10px;
+  border: 1px #eee solid;
+  background: #f9f9f9;
+  text-shadow: 0 1px 0 #fff;
+}
+
+
+/* Uploaders */
+.metabolics-uploader {
+  padding: 10px;
+  border: 1px #dfdfdf solid;
+  background: #f9f9f9;
+}
+
+.metabolics-uploader input[type="file"] {
+  margin-left: 10px;
+}
+
+.metabolics-uploader-delete {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px #dfdfdf solid;
+  display: block;
+}
+
+.metabolics-uploader-image {
+  max-width: 200px;
+  height: auto;
+}
+
+
+/* Color Field */
+.metabolics-color {
+  vertical-align: middle;
+  border: 1px #eee solid;
+  margin: 1px;
+  padding: 3px;
+  line-height: 15px;
+}
+
+
+/* Content Editor */
+div.metabolics-editor iframe {
+  background: #fff;
+}
+
+
+/* Sortable  */
+.metabolics-sortable {
+  padding: 10px;
+  border: 1px #eee solid;
+  background: #fff;
+}
+
+.metabolics-sortable-default {
+  position: relative;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #fff;
+  border: 1px #eee solid;
+  padding: 7px 10px 7px 30px;
+  background: #f9f9f9;
+  cursor: move;
+}
+
+.metabolics-sortable-default:before {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: block;
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #222;
+}
+
+.metabolics-sortable-default:after {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  display: block;
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #222;
+}
+
+.metabolics-sortable-highlight {
+  background: #fff;
+  border: 1px #eee dashed;
+  height: 34px;
+}
+
+.metabolics-sortable-remove {
+  float: right;
+  font-size: 10px;
+  text-decoration: none;
+  text-shadow: none;
+  display: none;
+}
+
+.metabolics-sortable-default:hover .metabolics-sortable-remove {
+  display: inline;
+}
+
+a.button.metabolics-sortable-add {
+  margin-left: 10px;
+}
+
+.metabolics-fieldset {
+  border: 1px #eee solid;
+  padding: 10px;
+  text-shadow: 0 1px 0 #fff;
+}
+
+
+/* Sidebar Metabox Styles */
+#postbox-container-1 .metabolics-container th,
+#postbox-container-1 .metabolics-container td {
+  display: block;
+}
+
+#postbox-container-1 .metabolics-container th {
+  padding-bottom: 5px;
+}
+
+#postbox-container-1 .metabolics-container td {
+  padding-top: 0;
+  margin-bottom: 0;
+}
+
+#postbox-container-1 .metabolics-container .metabolics-group {
+  float: none;
+}
+
+#postbox-container-1 .metabolics-container input[type="text"] {
+  max-width: 100%;
+  width: 230px;
+}

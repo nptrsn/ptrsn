@@ -1,0 +1,32 @@
+@import "../global/variables.import.less";
+
+.form-wrap {
+  padding: 15px 0 30px;
+
+  input {
+    height: 35px;
+    margin-top: 20px;
+    padding: 10px;
+    border: @border-gold;
+    color: black;
+    font-size: 1.8em;
+  }
+
+  &.form-signup,
+  &.form-shipping,
+  &.form-onsite {
+
+    &.form-shipping {
+      padding: 0px;
+      input { margin-top: 0; }
+    }
+
+    p  { padding: 0 15px; }
+
+    input { width: 100%; }
+  }
+}
+
+.subtext {
+  text-align: center;
+}

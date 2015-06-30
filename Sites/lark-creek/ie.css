@@ -1,0 +1,13 @@
+.container-left {
+	background: transparent;
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#D6544F49,endColorstr=#D6544F49)"; /* IE8 */    
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#D6544F49,endColorstr=#D6544F49);   /* IE6 & 7 */      
+	zoom: 1;
+}
+
+.home .container-left {
+  background: transparent;
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#B2FFFFFF,endColorstr=#B2FFFFFF)"; /* IE8 */    
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#B2FFFFFF,endColorstr=#B2FFFFFF);   /* IE6 & 7 */      
+  zoom: 1;
+}

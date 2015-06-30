@@ -1,0 +1,46 @@
+@import "../global/variables.import.less";
+
+body {
+  margin: 0;
+}
+
+// Main Container with modifier widths
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  margin-top: 100px;
+  padding: 0 30px 120px;
+  position: relative;
+
+  &-medium {
+    &:extend( .container );
+    max-width: 590px;
+  }
+
+  &-narrow {
+    &:extend( .container );
+    max-width: 420px;
+  }
+
+  & ul  { list-style: none; }
+  & img { border: @color-gold 2px solid; }
+}
+
+//Legal Terms text
+.legal-terms {
+  background: white;
+  padding: 30px;
+  border: @border-gold;
+  margin-bottom: 30px;
+  p { font-size: 2rem; }
+}
+
+//One Third Wraps for Full Width
+.label-wrap {
+  width: 100%;
+}
+.one-third-wrap {
+  width: 27%;
+  padding: 0 30px;
+  float: left;
+}

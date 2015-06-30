@@ -1,0 +1,40 @@
+@import "../global/variables.import.less";
+
+button {
+  color: white;
+  font-size: 2rem;
+  text-transform: uppercase;
+  background: black;
+  padding: 15px 20px;
+  border: 0;
+
+  &::after {
+    content: url("/img/arrow-small.png");
+    position: relative;
+    padding-left: 15px;
+    top: 4px;
+  }
+
+}
+
+  /*&:after {
+    content: '';
+    width: 100px;
+    height: 100px;
+    background: url("img/arrow.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    }
+}*/
+
+.button-wrap {
+  width: 100%;
+  text-align: center;
+
+  &.video-buttons {
+    padding: 15px 0 5px 0;
+    button { margin-right: 20px; }
+  }
+}
+
+.thirds-buttons { text-align: left; }

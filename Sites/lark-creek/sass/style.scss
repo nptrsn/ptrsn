@@ -1,0 +1,1196 @@
+/*!
+ * Theme Name:  Lark Creek Theme
+ * Description: Theme for the Lark Creek family of websites, based on SOEKANTheme
+ * Author:      Lion Associates
+ * Author URI:  http://lionassociates.com/
+ * Version:     1.0
+ */
+
+/* 0. Imports, Variables, & Mixins
+ * ========================================================================= */
+
+// -------------------------------> Imports <------------------------------- */
+
+// Normalize.css: http://necolas.github.io/normalize.css/
+@import "normalize";
+
+// Font Awesome: http://fortawesome.github.io/Font-Awesome/
+@import "font-awesome/font-awesome";
+
+// Soekan styles (Old Theme)
+@import "soekan/soekan_style";
+//@import "soekan/soekan_screen";
+@import "soekan/maximage";
+
+
+// ------------------------------> Variables <------------------------------ */
+// SASS Variables go here: colors, sizes, etc.
+
+// Turn the grid system on/off
+$include-grid: true;
+
+// Content sizing
+$content-width: 1140px;
+$content-padding: 30px;
+
+// Breakpoints (feel free to use more than these)
+$large-desktop: 1140px / 16px * 1em;
+$small-desktop: 960px / 16px * 1em;
+$ipad-landscape: 1024px / 16px * 1em;
+$ipad-portrait: 768px / 16px * 1em;
+$iphone-landscape: 480px / 16px * 1em;
+$iphone-portrait: 320px / 16px * 1em;
+
+// Colors
+$site-bg: #eee;
+$dark-text: #333;
+$light-text: #ccc;
+
+$link-normal: #ffffff;
+$link-hover: darken( $link-normal, 10% );
+$brown: #544F49;
+
+// Text & Fonts
+$base-font-size: 16px;
+$large-font-size: 20px;
+$small-font-size: 12px;
+$base-line-height: 1.5;
+
+
+// -------------------------------> Mixins <-------------------------------- */
+
+// Helper Functions
+@mixin clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin prefix( $property, $shorthand ) {
+  -webkit-#{ $property }: #{ $shorthand };
+     -moz-#{ $property }: #{ $shorthand };
+      -ms-#{ $property }: #{ $shorthand };
+       -o-#{ $property }: #{ $shorthand };
+          #{ $property }: #{ $shorthand };
+}
+
+@mixin box-sizing( $value: border-box ) {
+  @include prefix( box-sizing, $value );
+}
+
+// Styles
+@mixin vertical-gradient( $top, $bottom ) {
+  background: $top;
+  background: -webkit-gradient( linear, left top, left bottom,
+                color-stop( 0%, $top ),
+                color-stop( 100%, $bottom )
+              );
+  background: -webkit-linear-gradient( top, $top 0%, $bottom 100% );
+  background:    -moz-linear-gradient( top, $top 0%, $bottom 100% );
+  background:     -ms-linear-gradient( top, $top 0%, $bottom 100% );
+  background:      -o-linear-gradient( top, $top 0%, $bottom 100% );
+  background:         linear-gradient( to bottom, $top 0%, $bottom 100% );
+      filter: progid:DXImageTransform.Microsoft.gradient(
+                startColorstr='#{ie_hex_str( $top )}',
+                endColorstr='#{ie_hex_str( $bottom )}',
+                GradientType=0
+              );
+}
+
+@mixin horizontal-gradient( $left, $right ) {
+  background: $left;
+  background: -webkit-gradient( linear, left top, right top,
+                color-stop( 0%, $left ),
+                color-stop( 100%, $right )
+              );
+  background: -webkit-linear-gradient( left, $left 0%, $right 100% );
+  background:    -moz-linear-gradient( left, $left 0%, $right 100% );
+  background:     -ms-linear-gradient( left, $left 0%, $right 100% );
+  background:      -o-linear-gradient( left, $left 0%, $right 100% );
+  background:         linear-gradient( to right, $left 0%, $right 100% );
+      filter: progid:DXImageTransform.Microsoft.gradient(
+                startColorstr='#{ie_hex_str( $left )}',
+                endColorstr='#{ie_hex_str( $right )}',
+                GradientType=1
+              );
+}
+
+@mixin text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@mixin transparent-bg( $color, $opacity ) {
+  $rgba: rgba( $color, $opacity );
+  background: $rgba;
+  filter:progid:DXImageTransform.Microsoft.gradient(
+    startColorstr='#{ie_hex_str( $rgba )}',
+    endColorstr='#{ie_hex_str( $rgba )}'
+  );
+}
+
+
+
+/* 1. Base
+ * ========================================================================= */
+// Base theme styling goes here: only elements (e.g. "body"); no classes or IDs
+// Headings (h1-h6), links, inputs, etc.
+
+body {
+  background-color: $site-bg;
+  color: $dark-text;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+}
+@media only screen and ( max-width: 47em ) {
+  body {
+    min-width: 320px;
+  }
+}
+
+
+a {
+  color: $link-normal;
+  text-decoration: none;
+  @include prefix( transition, color 0.15s ease-out );
+
+  &:hover {
+    color: $link-hover;
+  }
+}
+
+nav {
+  float: right;
+  ul {
+    list-style: none;
+    padding: 0;
+    font-size: 0.875em;
+    font-weight: bold;
+    height: 38px;
+    margin-right: 34px;
+    text-transform: uppercase;
+    li {
+      float: left;
+      a {
+        color: #fff;
+        height: 38px;
+        line-height: 38px;
+        padding: 0 16px;
+        display: block;
+        &:hover {
+          color: #A9A39F;
+        }
+      }
+      &.current_page_item a, &.current-page-ancestor a {
+        color: #A9A39F;
+      }
+      &.invert {
+        background: #fff;
+        a {
+          color: $brown;
+        }
+      }
+    }
+  }
+}
+
+nav#footer-menu {
+  ul {
+    height: 30px;
+    float: left;
+    margin-right: 10px;
+    li a {
+      height: 30px;
+      line-height: 30px;
+      display: block;
+      padding: 0 10px;
+    }
+  }
+  .social {
+    width: 5em;
+    a {
+      line-height: 30px;
+      width: 20px;
+      text-align: center;
+      display: block;
+      float: left;
+      .yelp {
+        padding-top: 6px;
+        height: 16px;
+      }
+      .tripadvisor {
+        padding-top: 7px;
+        margin-left: 5px;
+        width: 25px;
+        height: auto;
+      }
+    }
+  }
+}
+
+.subNav {
+  h4 {
+    font-size: 16px;
+    margin-bottom: 0.5em;
+    text-transform: uppercase;
+  }
+  ul {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+    li {
+      margin-bottom: 0.6em;
+      a {
+        font-size: 0.875em;
+        line-height: 1.1em;
+        display: block;
+      }
+      span {
+        font-size: 13px;
+        color: #eee;
+      }
+    }
+  }
+}
+
+#mobile-button {
+  height: 38px;
+  width: 44px;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  z-index: 999;
+  text-align: right;
+  cursor: pointer;
+  display: none;
+  i {
+    font-size: 2em;
+    color: #fff;
+    line-height: 40px;
+  }
+}
+
+#mobile-nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: $brown;
+  width: 240px;
+  overflow: auto;
+  z-index: 0;
+  display: none;
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    li {
+      text-align: right;
+      border-bottom: 1px solid #78746f;
+      a {
+        padding: 0 20px;
+        line-height: 40px;
+        display: block;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+#master-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  -webkit-box-shadow: 0 0 5px 2px rgba(0,0,0,0.5);
+  box-shadow: 0 0 5px 2px rgba(0,0,0,0.5);
+}
+#fullscreen {
+  background: #eee;
+  top: 37px;
+  bottom: 29px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  z-index: 0;
+  .slide {
+    min-width: 100%;
+    min-height: 100%;
+  }
+}
+
+
+@media only screen and ( max-width: 58em ) {
+  #mobile-button, #mobile-nav {
+    display: block;
+  }
+  #main-menu .menu, #footer-menu .menu {
+    display: none;
+  }
+  .social {
+    margin-right: 2px;
+  }
+  #site-footer #site-info {
+    margin-left: 10px;
+  }
+  #arrow_right {
+    right: 10px;
+  }
+  .logo, .container-left, #arrow_left {
+    left: 10px;
+  }
+  .container-right {
+    right: 10px;
+    width: 50%;
+  }
+
+}
+
+
+/* 2. Structural Styles
+ * ========================================================================= */
+// Styles that define the structure of the theme (e.g. content width,
+// columns, etc.)
+
+.content-width {
+  max-width: $content-width - $content-padding * 2;
+  padding-left: $content-padding;
+  padding-right: $content-padding;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.content-left {
+  color: #fff;
+  font-size: 1.2em;
+  .promo-link {
+    margin-top: 20px;
+    display: block;
+  }
+  .subNav p {
+    font-size: 14px;
+  }
+}
+
+#site-info {
+  color: #fff;
+  margin: 0 0 0 40px;
+  float: left;
+  font-size: 0.8em;
+  line-height: 30px;
+}
+
+.home .container-left {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.home-disabled {
+  .container-left {
+    overflow-y: auto;
+    height: 500px;
+  }
+  .logo {
+    display: none;
+  }
+}
+
+.temporary-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  width: 50%;
+  padding: 1em;
+  color: #fff;
+  background: rgba(84, 79, 73, 0.84);
+
+  @media only screen and ( max-width: 600px ) {
+    position: relative;
+    width: auto;
+    margin: 10%;
+    margin-bottom: 20%;
+    box-sizing: border-box;
+    top: inherit;
+    left: initial;
+    transform: none;
+    -webkit-transform: none;
+  }
+}
+
+.home .content-left {
+  color: #544F49;
+}
+.home .content-left a {
+  color: #544F49;
+  font-size: 0.9em;
+  text-decoration: underline;
+}
+
+.content-left h1 {
+    color: #544F49;
+    font-size: 1.33333em;
+    line-height: 1.06667em;
+    margin: 0 0 0.5em;
+}
+.content-left h2 {
+    font-size: 1em;
+    line-height: 1.1em;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+.events .container-right, .blog .container-right {
+  width: 55%;
+}
+.menu-page .container-right {
+  width: 65%;
+}
+.event-thumb {
+  margin-bottom: 20px;
+  display: block;
+}
+.blogPost {
+    @include box-sizing;
+    border-top: 1px solid #FFFFFF;
+    margin: 1.5em 0;
+    padding: 1.5em 0 0;
+    clear: both;
+    .left {
+      margin: 10px 20px 20px 0;
+      float: left;
+      display: block;
+    }
+    .right {
+      margin: 10px 0 20px 20px;
+      float: right;
+      display: block;
+    }
+}
+
+.partner-logo {
+  max-width: 200px;
+  max-height: 140px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.partners .content-right h3 {
+  margin-bottom: 10px;
+  a {
+      text-decoration: none;
+    display: block;
+  }
+}
+
+#menu-pdf-link {
+  display: block;
+  margin: 0 0 17px;
+}
+
+ul.sp-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li {
+    margin-bottom: 20px;
+    @include clearfix;
+  }
+  h2 {
+    text-transform: uppercase;
+    font-size: 17px;
+    margin: 15px 0 10px;
+  }
+  span {
+    font-weight: bold;
+    display: inline-block;
+  }
+  .price-details {
+    float: right;
+    clear: both;
+    .title {
+      font-size: 13px;
+      font-style: italic;
+      margin-right: 5px;
+      font-weight: lighter;
+    }
+  }
+  .item {
+    max-width: 75%;
+  }
+  p {
+    font-size: 13px;
+    font-style: italic;
+    margin: 0;
+    max-width: 75%;
+  }
+}
+
+.headshot {
+  max-width: 175px;
+  height: auto;
+  float: right;
+  display: block;
+  margin: 20px 0 10px 20px;
+  border: 1px solid #545454;
+}
+
+.logo {
+  img {
+    width: 216px;
+    height: auto;
+    display: block;
+  }
+}
+
+.menu .container-right {
+  width: 66%;
+  max-width: 960px;
+}
+
+@media only screen and ( max-width: 58em ) {
+  .menu-page .container-right {
+    right: 10px;
+    width: 50%;
+  }
+}
+
+@media only screen and ( max-width: 44em ) {
+  .menu .container-right {
+    width: auto;
+    top: 8em;
+    left: 10px;
+    right: 10px;
+  }
+  .menu-page .container-right {
+    width: 280px;
+  }
+}
+
+.page-template-page-SIGNUP-php .container-right {
+  width: 50%;
+  iframe {
+    width: 100% !important;
+    overflow: hidden !important;
+    height: 1440px !important;
+    display: block;
+  }
+}
+.signup-button {
+  border: 1px solid #C8A228;
+  border-radius: 4px;
+  color: #614B00;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  display: none;
+  padding: 0 20px;
+  text-shadow: none;
+  text-decoration: none !important;
+  text-align: center;
+  height: 44px;
+  line-height: 44px;
+  text-decoration: none;
+  background: #fadb68; /* Old browsers */
+  background: -moz-linear-gradient(top,  #fadb68 0%, #ebac1d 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fadb68), color-stop(100%,#ebac1d)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #fadb68 0%,#ebac1d 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #fadb68 0%,#ebac1d 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #fadb68 0%,#ebac1d 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #fadb68 0%,#ebac1d 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fadb68', endColorstr='#ebac1d',GradientType=0 ); /* IE6-9 */
+}
+.mobile-message {
+  display: none;
+}
+
+@media only screen and ( max-width: 57em ) {
+  .page-template-page-SIGNUP-php .container-right {
+    width: 66%;
+  }
+}
+@media only screen and ( max-width: 50em ) {
+  .page-template-page-SIGNUP-php .container-right {
+    bottom: 50px;
+    left: 20px;
+    right: 20px;
+    top: 160px;
+    width: auto;
+    margin-bottom: 0;
+  }
+  .page-template-page-SIGNUP-php .logo {
+    left: auto;
+    margin: 0 auto 20px;
+    position: relative;
+    width: 216px;
+    display: block;
+  }
+}
+@media only screen and ( max-width: 30em ) {
+  .page-template-page-SIGNUP-php .container-right {
+    bottom: 50px;
+    left: 20px;
+    position: absolute;
+    right: 20px;
+    top: 160px;
+    width: auto;
+    margin: 0;
+    iframe {
+      display: none !important;
+    }
+    .page-template-page-SIGNUP-php .logo {
+      width: 200px;
+    }
+    .signup-button, .mobile-message {
+      display: block;
+    }
+  }
+}
+
+
+.blog .content-left {
+  font-size: 0.8em;
+}
+
+
+@media only screen and ( max-width: 30em ) {
+  #master-wrap {
+    height: auto;
+    min-height: 100%;
+  }
+  .logo {
+    left: auto;
+    margin: 0 auto 20px;
+    position: relative;
+    width: 200px;
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+  .container-left, .container-right {
+    width: 280px;
+    margin: 0 auto 20px;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    position: relative;
+    clear: both;
+  }
+  .container-right {
+    margin-bottom: 80px;
+  }
+  .menu .container-right {
+    margin-right: 10px;
+    margin-left: 10px;
+    right: auto;
+    left: auto;
+    top: 0;
+  }
+  .menu-page .container-right {
+    right: auto;
+  }
+  .header {
+    position: relative;
+  }
+  .page-template-page-GALLERY-php .header {
+    height: 107px;
+  }
+  .page-template-page-GALLERY-php #fullscreen {
+    top: 106px;
+  }
+  #arrow_left, #arrow_right {
+    display: none;
+  }
+}
+
+#open-table-widget {
+  position: absolute;
+  top: 70px;
+  right: 40px;
+}
+
+/* Site Footer
+ * ========================================================================== */
+
+.page-template-page-LOCU .container-left {
+  display: none;
+}
+
+.page-template-page-LOCU .container-right {
+  width: 65%;
+}
+
+.page-template-page-LOCU .content-right h3 {
+  display: none;
+}
+
+.locu-widget-wrapper #locu-render-output {
+  font-family: 'Quattrocento Sans', sans-serif;
+  color: #fff;
+  background: none;
+}
+
+.locu-widget-wrapper #locu-render-output .locu-nav {
+  margin-bottom: 50px;
+}
+
+.locu-widget-wrapper #locu-render-output .locu-nav li.locu-active {
+  color: #fff;
+  border: 2px solid #fff;
+}
+
+.locu-widget-wrapper #locu-render-output .locu-nav li {
+  &:hover {
+    color: #fff;
+    border: 2px solid #fff;
+  }
+}
+
+.locu-widget-wrapper #locu-render-output .locu-nav li {
+  font-family: 'Quattrocento Sans', sans-serif;
+  color: #fff;
+  font-size: 15px;
+  padding-bottom: 2px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0);
+}
+
+.locu-widget-wrapper #locu-render-output .locu-menu .locu-section-name {
+  color: #fff;
+  font-size: 16px;
+}
+
+.locu-widget-wrapper #locu-render-output .locu-menu .section-name:before, .locu-widget-wrapper #locu-render-output .locu-menu .section-name:after {
+  background: #fff;
+}
+
+.locu-widget-wrapper #locu-render-output .locu-menu .locu-subsection-name {
+  color: #fff;
+}
+
+.locu-widget-wrapper #locu-render-output .locu-menu .locu-note {
+  color: #fff;
+}
+
+.locu-widget-wrapper #locu-render-output .locu-menu .locu-menu-item .locu-menu-item-description {
+  color: #fff;
+}
+
+.locu-widget-reset div, .locu-widget-reset dl, .locu-widget-reset dt, .locu-widget-reset dd, .locu-widget-reset ul, .locu-widget-reset ol, .locu-widget-reset li, .locu-widget-reset h1, .locu-widget-reset h2, .locu-widget-reset h3, .locu-widget-reset h4, .locu-widget-reset h5, .locu-widget-reset h6, .locu-widget-reset pre, .locu-widget-reset form, .locu-widget-reset fieldset, .locu-widget-reset input, .locu-widget-reset textarea, .locu-widget-reset p, .locu-widget-reset blockquote, .locu-widget-reset th, .locu-widget-reset td {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.locu-widget-wrapper #locu-render-output .locu-menu .locu-menu-item .option-price {
+  color: #fff;
+}
+
+@media only screen and ( max-width: 58em ) {
+  .page-template-page-LOCU .logo {
+    left: auto;
+    margin: 0 auto 20px;
+    position: relative;
+    width: 200px;
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+  .page-template-page-LOCU  .container-right {
+    width: 70%;
+    margin: 150px auto 20px;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    position: relative;
+    clear: both;
+  }
+  .locu-widget-wrapper #locu-render-output .locu-web-menu .locu-subsection.no-columns, .locu-widget-wrapper #locu-render-output .locu-fb-menu .locu-subsection.no-columns {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+  }
+  .locu-widget-wrapper #locu-render-output .locu-web-menu .locu-subsection, .locu-widget-wrapper #locu-render-output .locu-fb-menu .locu-subsection {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+  }
+}
+
+@media only screen and ( max-width: 30em ) {
+  .page-template-page-LOCU .container-right {
+    width: 90%;
+  }
+}
+
+
+
+/* -------------------------------> Columns <------------------------------- */
+// To use the grid system, the wrapper element receives the class "columns" as
+// well as the size (e.g. "two"). Each column receives the class "column".
+// Example:
+//
+// <div class="columns three">
+//   <div class="column">Column 1 Content</div>
+//   <div class="column">Column 2 Content</div>
+//   <div class="column">Column 3 Content</div>
+// </div>
+//
+// Reverse the column order by adding the class "reverse" to the parent
+// container element, e.g.:
+//
+// <div class="columns two reverse">
+//   [...]
+// </div>
+//
+// You can also increase the size of a given column by adding the class "x#" to
+// the column element, where "#" is the width multiplier. Remove one column
+// for each width multiple. For example, to acheive a two-thirds layout, you
+// would have the structure:
+//
+// <div class="columns three">
+//   <div class="column">Column 1 Content</div>
+//   <div class="column x2">Column 2 Content</div>
+// </div>
+//
+// Finally, you can "push" a column to the left by adding the class "push-#",
+// where "#" is the number of column-widths to offset the column. Again, this
+// will take the place of the number of columns you are pushing by, so remove
+// the appropriate number of column elements. The structure:
+//
+// <div class="columns four">
+//   <div class="column">Column 1 Content</div>
+//   <div class="column push-2">Column 2 Content</div>
+// </div>
+//
+// will create a two column layout with the second column offset to the far
+// left of the screen. Adding the "reverse" class will alternatively push
+// the columns to the right by the given amount.
+
+@if $include-grid {
+  // Base Styles
+  .columns {
+    @include clearfix;
+
+    &.reverse {
+      > .column {
+        float: right;
+      }
+    }
+
+    // Two columns
+    &.two {
+      > .column {
+        width: 50%;
+      }
+
+      > .push-1 {
+        margin-left: 33.333%;
+      }
+
+      &.reverse > .push-1 {
+        margin-right: 33.333%;
+        margin-left: 0;
+      }
+    }
+
+    // Three Columns
+    &.three {
+      > .column {
+        width: 33.333%;
+      }
+
+      > .x2 {
+        width: 66.667%
+      }
+
+      > .push-1 {
+        margin-left: 33.333%;
+      }
+
+      > .push-2 {
+        margin-left: 66.667%;
+      }
+
+      &.reverse {
+        > .push-1 {
+          margin-right: 33.333%;
+          margin-left: 0;
+        }
+
+        > .push-2 {
+          margin-right: 66.667%;
+          margin-left: 0;
+        }
+      }
+    }
+
+    // Four Columns
+    &.four {
+      > .column {
+        width: 25%;
+      }
+
+      > .x2 {
+        width: 50%;
+      }
+
+      > .x3 {
+        width: 75%;
+      }
+
+      > .push-1 {
+        margin-left: 25%;
+      }
+
+      > .push-2 {
+        margin-left: 50%;
+      }
+
+      > .push-3 {
+        margin-left: 75%;
+      }
+
+      &.reverse {
+        > .push-1 {
+          margin-right: 25%;
+          margin-left: 0;
+        }
+
+        > .push-2 {
+          margin-right: 50%;
+          margin-left: 0;
+        }
+
+        > .push-3 {
+          margin-right: 75%;
+          margin-left: 0;
+        }
+      }
+    }
+
+    &.five {
+      > .column {
+        width: 20%;
+      }
+
+      > .x2 {
+        width: 40%;
+      }
+
+      > .x3 {
+        width: 60%;
+      }
+
+      > .x4 {
+        width: 80%;
+      }
+
+      > .push-1 {
+        margin-left: 20%;
+      }
+
+      > .push-2 {
+        margin-left: 40%;
+      }
+
+      > .push-3 {
+        margin-left: 60%;
+      }
+
+      > .push-4 {
+        margin-left: 80%;
+      }
+
+      &.reverse {
+        > .push-1 {
+          margin-right: 20%;
+          margin-left: 0;
+        }
+
+        > .push-2 {
+          margin-right: 40%;
+          margin-left: 0;
+        }
+
+        > .push-3 {
+          margin-right: 60%;
+          margin-left: 0;
+        }
+
+        > .push-4 {
+          margin-right: 80%;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .column {
+    float: left;
+    @include box-sizing;
+  }
+}
+
+
+
+
+
+/* 3. Element Styles
+ * ========================================================================= */
+// Main styles for the site: resuable styles (e.g. ".button") and module styles
+
+/* --------------------------------> State <-------------------------------- */
+.is-hidden {
+  display: none;
+}
+
+
+/* -------------------------------> General <------------------------------- */
+.alignleft {
+  display: inline;
+  float: left;
+  margin-right: 20px;
+}
+
+.alignright {
+  display: inline;
+  float: right;
+  margin-left: 20px;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pixel-display {
+  display: none;
+}
+
+.wpcf7-form-control {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.wpcf7-submit {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 0;
+  width: 100%;
+  background: #FBDD6B;
+  background: -moz-linear-gradient(top, #fbdd6b 0%, #f2c546 37%, #ebac1d 99%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FBDD6B), color-stop(37%,#F2C546), color-stop(99%,#EBAC1D));
+  background: -webkit-linear-gradient(top, #FBDD6B 0%,#F2C546 37%,#EBAC1D 99%);
+  background: -o-linear-gradient(top, #fbdd6b 0%,#f2c546 37%,#ebac1d 99%);
+  background: -ms-linear-gradient(top, #fbdd6b 0%,#f2c546 37%,#ebac1d 99%);
+  background: linear-gradient(to bottom, #FBDD6B 0%,#F2C546 37%,#EBAC1D 99%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbdd6b', endColorstr='#ebac1d',GradientType=0 );
+  border: #C8A228 solid 1px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  color: #614B00;
+  cursor: pointer;
+}
+
+.OT_searchTimeField,
+.OT_searchDateField,
+.OT_searchPartyField {
+  box-sizing: border-box;
+  height: 22px !important;
+}
+
+.OT_navListItem:before {
+  display: none;
+}
+
+#recaptcha_widget_div {
+  -webkit-transform: scale( 0.89 ) translateX( -18px );
+     -moz-transform: scale( 0.89 ) translateX( -18px );
+      -ms-transform: scale( 0.89 ) translateX( -18px );
+       -o-transform: scale( 0.89 ) translateX( -18px );
+          transform: scale( 0.89 ) translateX( -18px );
+
+  @media only screen and (max-width: 680px) and (min-width: 570px) {
+    #recaptcha_widget_div {
+      -webkit-transform: scale(0.75) translateX(-50px);
+      -moz-transform: scale(0.75) translateX(-50px);
+      -ms-transform: scale(0.75) translateX(-50px);
+      -o-transform: scale(0.75) translateX(-50px);
+      transform: scale(0.75) translateX(-50px); } }
+
+  @media only screen and (max-width: 569px) and (min-width: 481px) {
+    #recaptcha_widget_div {
+      -webkit-transform: scale(0.60) translateX(-100px);
+      -moz-transform: scale(0.60) translateX(-100px);
+      -ms-transform: scale(0.60) translateX(-100px);
+      -o-transform: scale(0.60) translateX(-100px);
+      transform: scale(0.60) translateX(-100px); } }
+
+  @media only screen and (max-width: 30em) {
+    #recaptcha_widget_div {
+      -webkit-transform: scale(0.75) translateX(-40px);
+      -moz-transform: scale(0.75) translateX(-40px);
+      -ms-transform: scale(0.75) translateX(-40px);
+      -o-transform: scale(0.75) translateX(-40px);
+      transform: scale(0.75) translateX(-40px); } }
+
+  @media only screen and (min-width: 481px) {
+    #recaptcha_widget_div {
+    float: left;
+    margin-bottom: 15px;
+    }
+  }
+
+
+/* -------------------------------> Modules <------------------------------- */
+// Media queries should follow each module in the form:
+//
+// .module-name {
+//   width: 50%;
+// }
+//
+// @media only screen and ( max-width: $small-desktop ) {
+//   .module-name {
+//     width: 75%;
+//   }
+// }
+//
+// Rather than focusing on specific breakpoints (although common breakpoints
+// are provided), add media queries as necessary to best accomodate the layout
+// of the content itself. All media queries should be given in ems rather than
+// pixels. The SASS function emCalc is useful for converting pixels to ems:
+//
+// @media only screen and ( max-width: emCalc( 1152px ) ) {
+//   [...]
+// }
+
+/* 4. Single Platform API Style Overrides
+ * ========================================================================= */
+#sp_main #sp_foot {
+  display: none !important;
+}
+
+/* 5. Newsletter/reCAPTCHA Style Overrides
+ * ========================================================================= */
+.page-template-page-SIGNUP-larkcreeksteak .container-right,
+.page-template-page-SIGNUP-cupola .container-right,
+.page-template-page-SIGNUP-larkcreekkitchen .container-right,
+.page-template-page-SIGNUP-walnutcreek .container-right,
+.page-template-page-SIGNUP-YPlafayette .container-right {
+  width: 38%;
+}
+
+input#txtEmail {
+  width: 99% !important;
+  padding: 5px 0% !important;
+}
